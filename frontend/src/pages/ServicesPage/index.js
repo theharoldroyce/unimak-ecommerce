@@ -3,8 +3,8 @@ import Helmet from '../../components/Helmet'
 
 const index = () => {
   return (
-    <Helmet title={"About Us"}>
-      <h1>About Page</h1>
+    <Helmet title={"Services"}>
+      <h1>Services Page</h1>
     </Helmet>
   )
 }
