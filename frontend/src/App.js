@@ -14,6 +14,7 @@ const LoginPage = React.lazy(() => import('./pages/LoginPage'))
 const ProductDetailPage = React.lazy(() => import('./pages/ProductDetailPage'))
 const ServicesPage = React.lazy(() => import('./pages/ServicesPage'))
 const ShopPage = React.lazy(() => import('./pages/ShopPage'))
+const ProductListPage = React.lazy(() => import('./pages/ProductListPage'))
 const SignupPage = React.lazy(() => import('./pages/SignupPage'))
 
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/" element={<DefaultLayout />}>
             <Route index element={<HomePage />} />
             <Route path="shop" element={<ShopPage />} />
+            <Route path="/:slug" element={<ProductListPage />} />
             <Route path="services" element={<ServicesPage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="contact" element={<ContactPage />} />

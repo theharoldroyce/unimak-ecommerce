@@ -19,6 +19,11 @@ const columns = [
         sortable: true,
     },
     {
+        name: 'Brand Name',
+        selector: row => row.brand,
+        sortable: true,
+    },
+    {
         name: 'Price',
         selector: row => row.price,
         sortable: true,
@@ -59,10 +64,11 @@ const ProductTable = () => {
                 data.push({
                     no: product._id,
                     name: product.name,
+                    brand:product.brand,
                     price: product.price,
                     qty: product.quantity,
                     desc: product.description,
-                    cat: <label>category</label>,
+                    cat: product.category.name,
                 })
             })
         }

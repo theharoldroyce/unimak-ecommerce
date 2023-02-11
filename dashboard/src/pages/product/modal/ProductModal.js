@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Modal} from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { CFormInput, CFormSelect, CInputGroup, CInputGroupText } from '@coreui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory } from '../../../actions/category.actions';
@@ -13,6 +13,7 @@ const ProductModal = ({ visibility: { show, setShow } }) => {
 
 
     const [name, setName] = useState('');
+    const [brand, setBrand] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [quantity, setQuantity] = useState('');
@@ -47,6 +48,7 @@ const ProductModal = ({ visibility: { show, setShow } }) => {
 
         const form = new FormData();
         form.append('name', name);
+        form.append('brand', brand);
         form.append('quantity', quantity);
         form.append('price', price);
         form.append('description', description);
@@ -59,6 +61,7 @@ const ProductModal = ({ visibility: { show, setShow } }) => {
 
         dispatch(addProduct(form));
         setName('');
+        setBrand('');
         setPrice('');
         setDescription('');
         setQuantity('');
@@ -67,7 +70,7 @@ const ProductModal = ({ visibility: { show, setShow } }) => {
 
         setShow(false);
     }
-    
+
 
     return (
         <>
@@ -87,6 +90,16 @@ const ProductModal = ({ visibility: { show, setShow } }) => {
                         placeholder="Enter Product Name *"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                    />
+
+                    <CFormInput
+                        type="text"
+                        id="floatingInputBrand"
+                        floatingClassName="mb-3"
+                        floatingLabel="Enter Brand Name *"
+                        placeholder="Enter Brand Name *"
+                        value={brand}
+                        onChange={(e) => setBrand(e.target.value)}
                     />
 
                     <CInputGroup

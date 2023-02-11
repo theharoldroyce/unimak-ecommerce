@@ -8,11 +8,14 @@ const ProductData = () => {
 
     const dispatch = useDispatch();
     const product = useSelector(state => state.product);
+    const category = useSelector(state => state.category);
 
 
     useEffect(() => {
         dispatch(getInitialData());
     }, []);
+
+  
 
     const renderProducts = () => {
         return (
@@ -37,7 +40,7 @@ const ProductData = () => {
                                     <td>{product.price}</td>
                                     <td>{product.quantity}</td>
                                     <td>{product.description}</td>
-                                    <td>category</td>
+                                    <td>{product.categories.name}</td>
                                 </tr>
                             ) : null
                     }
