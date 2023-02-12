@@ -8,10 +8,8 @@ const Category = require('../models/category');
 
 exports.createProducts = (req, res) => {
 
-    // res.status(200).json({ file: req.files, body: req.body});
-
     const {
-        name, brand, price, description, quantity, status, category, createdBy
+        name, brand, price, description, model, series, size, quantity, status, category, createdBy
     } = req.body;
 
     let productImage = [];
@@ -28,6 +26,9 @@ exports.createProducts = (req, res) => {
         brand,
         price,
         description,
+        model,
+        series,
+        size,
         quantity,
         status,
         category,
@@ -48,7 +49,7 @@ exports.createProducts = (req, res) => {
 
 
 exports.getProductBySlug = (req, res) => {
-    const { slug } = req.params;
+    const { slug } = req.params;  
     Category.findOne({ slug: slug })
         .select('_id')
         .exec((error, category) => {
@@ -67,12 +68,12 @@ exports.getProductBySlug = (req, res) => {
                         if (products.length > 0) {
                             res.status(200).json({
                                 products,
-                                productByPrice: {
-                                    under1h: products.filter(product => product.price <= 50),
-                                    under5h: products.filter(product => product.price > 50 && product.price <= 100),
-                                    under100h: products.filter(product => product.price > 100 && product.price <= 150),
-                                    under100h: products.filter(product => product.price > 150 && product.price <= 200),
-                                    under100h: products.filter(product => product.price > 200 && product.price <= 300),
+                                productsByPrice: {
+                                    under50p: products.filter(product => product.price <= 50),
+                                    under100p: products.filter(product => product.price > 50 && product.price <= 100),
+                                    under150p: products.filter(product => product.price > 100 && product.price <= 150),
+                                    under200h: products.filter(product => product.price > 150 && product.price <= 200),
+                                    under300h: products.filter(product => product.price > 200 && product.price <= 300),
                                 }
                             });
                         }

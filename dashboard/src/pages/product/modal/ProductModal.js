@@ -16,6 +16,9 @@ const ProductModal = ({ visibility: { show, setShow } }) => {
     const [brand, setBrand] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
+    const [model, setModel] = useState('');
+    const [series, setSeries] = useState('');
+    const [size, setSize] = useState('');
     const [quantity, setQuantity] = useState('');
     const [status, setStatus] = useState('');
     const [categoryId, setCategoryId] = useState('');
@@ -52,6 +55,9 @@ const ProductModal = ({ visibility: { show, setShow } }) => {
         form.append('quantity', quantity);
         form.append('price', price);
         form.append('description', description);
+        form.append('model', model);
+        form.append('series', series);
+        form.append('size', size);
         form.append('status', status);
         form.append('category', categoryId);
 
@@ -64,6 +70,9 @@ const ProductModal = ({ visibility: { show, setShow } }) => {
         setBrand('');
         setPrice('');
         setDescription('');
+        setModel('');
+        setSeries('');
+        setSize('');
         setQuantity('');
         setStatus('');
         setCategoryId('');
@@ -74,7 +83,7 @@ const ProductModal = ({ visibility: { show, setShow } }) => {
 
     return (
         <>
-            <Modal show={show} onHide={() => setShow(false)} size="md" centered={true} >
+            <Modal show={show} onHide={() => setShow(false)} size="md" centered={true} scrollable>
                 <Modal.Header className="justify-content-center" closeButton>
                     <Modal.Title className='fs-5'>
                         Add Product
@@ -127,6 +136,34 @@ const ProductModal = ({ visibility: { show, setShow } }) => {
                         placeholder="Enter Description *"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+                    />
+
+                    <CFormInput
+                        type="text"
+                        id="floatingModel"
+                        floatingClassName="mb-3"
+                        floatingLabel="Enter Model *"
+                        placeholder="Enter Model *"
+                        value={model}
+                        onChange={(e) => setModel(e.target.value)}
+                    />
+                    <CFormInput
+                        type="text"
+                        id="floatingSeries"
+                        floatingClassName="mb-3"
+                        floatingLabel="Enter Series *"
+                        placeholder="Enter Series *"
+                        value={series}
+                        onChange={(e) => setSeries(e.target.value)}
+                    />
+                    <CFormInput
+                        type="text"
+                        id="floatingSize"
+                        floatingClassName="mb-3"
+                        floatingLabel="Enter Size *"
+                        placeholder="Enter Size *"
+                        value={size}
+                        onChange={(e) => setSize(e.target.value)}
                     />
 
                     <CFormInput

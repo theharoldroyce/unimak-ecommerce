@@ -25,6 +25,21 @@ const productSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    model: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    series: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    size: {
+        type: String,
+        required: true,
+        trim: true
+    },
     quantity: {
         type: Number,
         required: true,
