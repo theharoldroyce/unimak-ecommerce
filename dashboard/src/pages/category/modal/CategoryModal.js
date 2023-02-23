@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Button, Modal, Form } from 'react-bootstrap';
+import { CFormInput, CFormSelect } from '@coreui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCategory, getAllCategory } from '../../../actions/category.actions';
-import { CFormInput, CFormSelect } from '@coreui/react';
+
 
 const CategoryModal = ({ visibility: { show, setShow } }) => {
-
 
     const category = useSelector(state => state.category);
     const dispatch = useDispatch();

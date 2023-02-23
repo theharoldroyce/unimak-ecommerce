@@ -3,7 +3,10 @@ import React, { Suspense } from 'react'
 import { Navigate, Routes, Route } from 'react-router-dom'
 import { Oval } from 'react-loader-spinner'
 
+
 //Pages Routes
+const Layout = React.lazy(() => import('./container/Layout'))
+const ProductList = React.lazy(() => import('./container/ProductListPage'))
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 const Page404 = React.lazy(() => import('./pages/Page404'))
 const HomePage = React.lazy(() => import('./pages/HomePage'))
@@ -35,7 +38,9 @@ function App() {
       <Suspense fallback={loading}>
         <Routes>
           <Route path="*" element={<Page404 />} />
-          <Route path="/" element={<DefaultLayout />}>
+          <Route path="/" element={<Layout />} />
+          <Route path="/:slug" element={<ProductList />} />
+          {/* <Route path="/" element={<DefaultLayout />}>
             <Route index element={<HomePage />} />
             <Route path="shop" element={<ShopPage />} />
             <Route path="/:slug" element={<ProductListPage />} />
@@ -43,7 +48,7 @@ function App() {
             <Route path="about" element={<AboutPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="signin" element={<SignupPage />} />
-          </Route>
+          </Route> */}
         </Routes >
       </Suspense>
     </>

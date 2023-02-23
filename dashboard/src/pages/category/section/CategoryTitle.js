@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
-import CategoryModal from '../modal/CategoryModal'
+// import CategoryModal from '../modal/CategoryModal'
+
 
 
 const CategoryTitle = () => {
 
+    
     const [openCategoryModal, setOpenCategoryModal] = useState(false)
     const handleModal = () => {
         setOpenCategoryModal(true)
@@ -19,19 +21,19 @@ const CategoryTitle = () => {
                     </div>
                 </Col>
                 <Col xs={4} sm={4} md={4}>
-                    <div className="d-inline-flex w-100 justify-content-end align-items-center mb-1">
-                        <Button
+                    <div className="d-inline-flex w-100 justify-content-end align-items-center mb-1  gap-3">
+                        {/* <Button
                             type="button"
-                            className="d-flex align-items-center text-white"
+                            className="d-flex align-items-center text-white bg-success"
                             style={{ height: '3rem', backgroundColor: '#8624DB' }}
                             onClick={handleModal}
                         >
                             Add Category
-                        </Button>
+                        </Button> */}
                     </div>
                 </Col>
             </Row>
-            <CategoryModal visibility={{ show: openCategoryModal, setShow: setOpenCategoryModal }} />
+            {/* <CategoryModal visibility={{ show: openCategoryModal, setShow: setOpenCategoryModal }} /> */}
         </>
     )
 }

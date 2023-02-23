@@ -6,6 +6,7 @@ import { isUserLoggedIn, getAllCategory } from './actions'
 //scss
 import '@coreui/coreui/dist/css/coreui.min.css'
 import './assets/libs/boxicons-2.1.1/css/boxicons.min.css'
+import 'rsuite/styles/index.less'; // or 'rsuite/dist/rsuite.min.css'
 import './scss/App.scss'
 import { getInitialData } from './actions/initialData.actions'
 

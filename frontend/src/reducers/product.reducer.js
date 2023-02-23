@@ -2,21 +2,25 @@ import { productConstants } from "../actions/constants"
 
 const initState = {
     products: [],
-    productByPrice: {
-        under1h: [],
+    productsByPrice: {
+        under50p: [],
+        under100p: [],
+        under150p: [],
+        under200h: [],
+        under300h: [],
     }
 }
 
 export default (state = initState, action) => {
-    switch(action.type){
+    switch (action.type) {
         case productConstants.GET_PRODUCTS_BY_SLUG:
-            state ={
+            state = {
                 ...state,
                 products: action.payload.products,
                 productsByPrice: {
-                    ...action.payload.productByPrice
-                }
-            }
+                    ...action.payload.productsByPrice
+                },
+            };
             break;
     }
     return state;

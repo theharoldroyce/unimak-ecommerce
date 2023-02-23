@@ -3,7 +3,7 @@ import { productConstants } from './constants'
 
 
 export const getProductsBySlug = (slug) => {
-    return async dispatch => {
+    return async (dispatch) => {
         const res = await axios.get(`/products/${slug}`);
         if (res.status === 200) {
             dispatch({
@@ -12,9 +12,8 @@ export const getProductsBySlug = (slug) => {
             });
         } else {
             // dispatch({
-            //     type:
-            // })
+            //     type: 
+            // });
         }
-
-    }
-}
+    };
+};
