@@ -6,6 +6,12 @@ const sidebarNav = [
         text: 'Home'
     },
     {
+        link: 'page',
+        section: 'page',
+        icon: <i className='bx bx-book'></i>,
+        text: 'Pages'
+    },
+    {
         link: '/orders',
         section: 'orders',
         icon: <i className='bx bx-line-chart'></i>,

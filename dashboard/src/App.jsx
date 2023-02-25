@@ -17,6 +17,7 @@ const MainLayout = React.lazy(() => import('./layout/MainLayout'))
 const Login = React.lazy(() => import('./pages/Login'))
 const Blank = React.lazy(() => import('./pages/Blank'))
 const Admin = React.lazy(() => import('./pages/admin/index'))
+const Page = React.lazy(() => import('./pages/page/index'))
 const Category = React.lazy(() => import('./pages/category/index'))
 const Product = React.lazy(() => import('./pages/product/index'))
 
@@ -40,9 +41,11 @@ function App() {
         if (!auth.authenticate) {
             dispatch(isUserLoggedIn());
         }
-        dispatch(getInitialData());
+        if (auth.authenticate) {
+            dispatch(getInitialData());
+        }
 
-    }, []);
+    }, [auth.authenticate]);
     return (
         <>
             <Suspense fallback={loading}>
@@ -53,6 +56,7 @@ function App() {
                         <Route path="/" element={<MainLayout />}>
                             <Route index element={<Dashboard />} />
                             <Route path="orders" element={<Page500 />} />
+                            <Route path="page" element={<Page />} />
                             <Route path="category" element={<Category />} />
                             <Route path="products" element={<Product />} />
                             <Route path="customers" element={<Page500 />} />

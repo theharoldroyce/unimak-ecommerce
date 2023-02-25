@@ -6,7 +6,8 @@ import { addCategory, getAllCategory, updateCategories, deleteCategories as dele
 import CheckboxTree from 'react-checkbox-tree';
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 import { IoCheckboxOutline, IoCheckboxSharp, IoCheckbox, IoChevronDownCircle, IoChevronForwardCircleSharp } from "react-icons/io5";
-// import UpdateCategoryModal from '../modal/UpdateCategoryModal';
+import UpdateCategoryModal from '../modal/UpdateCategoryModal';
+import DeleteCategoryModal from '../modal/DeleteCategoryModal';
 import CategoryModal from '../modal/CategoryModal'
 
 const CategoryList = () => {
@@ -84,7 +85,12 @@ const CategoryList = () => {
     const createCategoryList = (categories, options = []) => {
 
         for (let category of categories) {
-            options.push({ value: category._id, name: category.name, parentId: category.parentId });
+            options.push({
+                value: category._id,
+                name: category.name,
+                parentId: category.parentId,
+                type: category.type
+            });
             if (category.children.length > 0) {
                 createCategoryList(category.children, options)
             }
@@ -116,7 +122,7 @@ const CategoryList = () => {
             form.append('parentId', item.parentId ? item.parentId : "");
             form.append('type', item.type);
         });
-        dispatch(updateCategories(form))       
+        dispatch(updateCategories(form))
         setOpenUpdateCategory(false)
     }
 
@@ -237,6 +243,21 @@ const CategoryList = () => {
                                             }
                                         </CFormSelect>
                                     </Col>
+
+                                    <Col>
+                                        <CFormSelect
+                                            aria-label="Default select example"
+                                            className='form-control mb-3'
+                                            value={item.type}
+                                            onChange={(e) => handleCategoryInput('type', e.target.value, index, 'expanded')}
+                                        >
+                                            <option>Select Category </option>
+                                            {/* {
+                                                createCategoryList(category.categories).map(option =>
+                                                    <option key={option.value} value={option.value}>{option.name}</option>)
+                                            } */}
+                                        </CFormSelect>
+                                    </Col>
                                 </Row>
                             )
                         }
@@ -269,10 +290,23 @@ const CategoryList = () => {
                                             onChange={(e) => handleCategoryInput('parentId', e.target.value, index, 'checked')}
                                         >
                                             <option>Select Category </option>
-                                            {
-                                                createCategoryList(category.categories).map(option =>
-                                                    <option key={option.value} value={option.value}>{option.name}</option>)
-                                            }
+                                            <option value="Store">Store</option>
+                                            <option value="Product">Product</option>
+                                            <option value="Page">Page</option>
+                                        </CFormSelect>
+                                    </Col>
+
+                                    <Col>
+                                        <CFormSelect
+                                            aria-label="Default select example"
+                                            className='form-control mb-3'
+                                            value={item.type}
+                                            onChange={(e) => handleCategoryInput('type', e.target.value, index, 'checked')}
+                                        >
+                                            <option>Select Category </option>
+                                            <option value="Store">Store</option>
+                                            <option value="Product">Product</option>
+                                            <option value="Page">Page</option>
                                         </CFormSelect>
                                     </Col>
                                 </Row>
@@ -358,6 +392,17 @@ const CategoryList = () => {
             }
             <CategoryModal visibility={{ show: openCategoryModal, setShow: setOpenCategoryModal }} />
             {/* <UpdateCategoryModal
+                show={openUpdateCategory}
+                onHide={() => setOpenUpdateCategory(false)}
+                size="md"
+                centered={true}
+                expandedArray={expandedArray}
+                checkedArray={checkedArray}
+                handleCategoryInput={handleCategoryInput}
+                createCategoryList={createCategoryList(category.categories)}
+                updateCategoriesForm={updateCategoriesForm}
+            />
+            <DeleteCategoryModal
                 show={openUpdateCategory}
                 onHide={() => setOpenUpdateCategory(false)}
                 size="md"

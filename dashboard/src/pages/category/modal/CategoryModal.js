@@ -16,12 +16,25 @@ const CategoryModal = ({ visibility: { show, setShow } }) => {
     const [categoryImage, setCategoryImage] = useState('');
 
     useEffect(() => {
+        if (!category.loading) {
+            setShow(false);
+        }
+    }, [category.loading]);
+
+    useEffect(() => {
         dispatch(getAllCategory());
     }, []);
 
     const hanldeSaveCategory = () => {
 
         const form = new FormData();
+
+        if (categoryName === "") {
+            alert('Category name is required')
+            setShow(false);
+            return;
+        }
+
         form.append('name', categoryName);
         form.append('parentId', parentCategoryId);
         form.append('categoryImage', categoryImage);
